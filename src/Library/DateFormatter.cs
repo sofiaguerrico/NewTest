@@ -13,8 +13,33 @@ public class DateFormatter
     /// </summary>
     /// <param name="date">Una fecha en formato "dd/mm/yyyy".</param>
     /// <returns>La fecha convertida al formato "yyyy-mm-dd".</returns>
+
+   
     public static string ChangeFormat(string date)
     {
-        return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
+        if (String.IsNullOrEmpty(date))
+        {
+            return "Error";
+        }
+        if (VerificarFormat(date) == true)
+        {
+            return date.Substring(6) + "-" + date.Substring(3, 2) + "-" + date.Substring(0, 2);
+        }else{
+            return "Error";
+        }
+        
+    }
+
+     public static bool VerificarFormat(string date)
+    {
+        string[] array=date.Split('/');
+        if ((array[0].Length == 2) && (array[1].Length == 2) && (array[2].Length == 4))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
